@@ -194,10 +194,12 @@ app.get('/', async (req, res) => {
   });
 });
 
+const PORT = process.env.PORT || 8080; // Use 8080 as a fallback
+
 const startServer = async () => {
   try {
-    connectDB(process.env.MONGODB_URL);
-    app.listen(8080, () => console.log('Server started on port 8080'));
+    await connectDB(process.env.MONGODB_URL);
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
   } catch (error) {
     console.log(error);
   }
